@@ -56,9 +56,9 @@ void main()
 			SoDu.push_back(a[atoi(temp.c_str())]);
 			input = thuong;
 		}
+		output = SoDu[SoDu.size() - 1];
+		for (int i = SoDu.size() - 2; i >= 0; i--)
+			output += SoDu[i];
+		cout << output << endl;
 	}
-	output = SoDu[SoDu.size()-1];
-	for (int i = SoDu.size()-2; i >= 0; i--)
-		output += SoDu[i];
-	cout << output << endl;
 }
