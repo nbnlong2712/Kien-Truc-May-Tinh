@@ -229,6 +229,7 @@ string cong2Bit(string a, string b)
 					so3 = 1;
 					nho = 1;
 				}
+				else nho=0;
 				c = to_string(so3) + c;
 			}
 		}
