@@ -157,6 +157,7 @@ string congHaiSoHe10(string a, string b)
 					so3 = so3 % 10;
 					nho = 1;
 				}
+				else nho=0;
 				c = to_string(so3) + c;
 			}
 		}
@@ -306,6 +307,10 @@ string operator ~(string a) {
 	string c=daoBit(string a)
 
 	return c;
+}
+string he2sang16(string he2)
+{
+	return he10sang16(he2sang10(he2));
 }
 
 
