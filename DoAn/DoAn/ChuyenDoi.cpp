@@ -1,5 +1,14 @@
 ﻿#pragma once
 #include"QInt.h"
+// xu li chuoi cho 2 chuoi co cung do dai
+void XuLiChuoi(string a,string b) {
+	while (a.size() != b.size())          // xử lý sao cho độ dài 2 chuỗi số bằng nhau
+	{
+		if (a.size() < b.size())
+			a = "0" + a;
+		else b = "0" + b;
+	}
+}
 string StrToBi(string a) {
 	string bit;
 	string b;
@@ -148,6 +157,7 @@ string congHaiSoHe10(string a, string b)
 					so3 = so3 % 10;
 					nho = 1;
 				}
+				else nho=0;
 				c = to_string(so3) + c;
 			}
 		}
@@ -249,5 +259,58 @@ string daoBit(string k)
 	return c;
 }
 
+string operator&(string a,string b) {
+
+	while (a.size() != b.size())               // xử lý sao cho độ dài 2 chuỗi số bằng nhau
+	{
+		if (a.size() < b.size())
+			a = "0" + a;
+		else b = "0" + b;
+	}
+	string c;
+	int k;
+	for (int i = 0; i <a.length(); i++) {
+		k = atoi(a.substr(i, 1).c_str())&atoi(b.substr(i, 1).c_str());
+		to_string(k);
+		c += to_string(k);
+	}
+	return c;
+}
+
+string operator|(string a, string b) {
+	
+	XuLiChuoi(a, b);
+	string c;
+	int k;
+	for (int i = 0; i < a.length(); i++) {
+		k = atoi(a.substr(i, 1).c_str())|atoi(b.substr(i, 1).c_str());
+		to_string(k);
+		c += to_string(k);
+	}
+	return c;
+}
+string operator ^(string a, string b) {
+	
+	XuLiChuoi(a, b);
+	string c;
+	int k;
+	for (int i = 0; i < a.length(); i++) {
+		k = atoi(a.substr(i, 1).c_str()) ^ atoi(b.substr(i, 1).c_str());
+		to_string(k);
+		c += to_string(k);
+	}
+	return c;
+}
+
+string operator ~(string a) {
+
+	string c=daoBit(string a)
+
+	return c;
+}
+string he2sang16(string he2)
+{
+	return he10sang16(he2sang10(he2));
+}
 
 
