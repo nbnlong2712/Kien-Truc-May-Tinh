@@ -13,25 +13,7 @@ QInt QInt::operator=(const QInt &a) {
 	}
 	return *this;
 };
-const QInt QInt::operator+(QInt a) {
-	QInt c;
-	return c;
-};
-QInt QInt::operator-(const QInt &a) {
-	QInt b;
-	return b;
 
-};
-QInt QInt::operator*(const QInt &a) {
-	QInt b;
-	return b;
-
-};
-QInt QInt::operator/(const QInt &a) {
-	QInt b;
-	return b;
-
-};
 QInt QInt::operator&( QInt a) {
 	QInt c;
 	for (int i = 0; i < 4; i++) {
@@ -98,3 +80,31 @@ void PrintQInt(QInt &z) {
 	}
 	cout << endl;
 }
+QInt QInt::operator+(QInt a) {
+	int nho=0;
+	QInt c;
+	for (int i = 3; i >=0; i--) {
+		for (int j = 32; j >=0; j--) {
+			if ((((data[i] >> (32 - j)) & 1) + ((a.data[i] >> (32 - j)) & 1)+nho )== 2) {
+				nho = 1;
+				c.data[i] = c.data[i] | (0 << (32 - j));
+			}else
+				if ((((data[i] >> (32 - j)) & 1) + ((a.data[i] >> (32 - j)) & 1) + nho) == 1) {
+					c.data[i] = c.data[i] | (1 << (32 - j));
+					nho = 0;
+				}
+				else
+					if ((((data[i] >> (32 - j)) & 1) + ((a.data[i] >> (32 - j)) & 1) + nho) == 0) {
+						c.data[i] = c.data[i] | (0 << (32 - j));
+						nho = 0;
+					}
+					else
+						if ((((data[i] >> (32 - j)) & 1) + ((a.data[i] >> (32 - j)) & 1) + nho) == 3) {
+							nho = 1;
+							c.data[i] = c.data[i] | (0 << (32 - j));
+						}
+
+		}
+	}
+	return c;
+};
