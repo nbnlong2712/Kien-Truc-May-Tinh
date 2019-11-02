@@ -1,4 +1,3 @@
-#pragma once
 #include<iostream>
 #include<string>
 #include<vector>
@@ -15,6 +14,10 @@ public:
 	QInt operator-(const QInt &a);
 	QInt operator*(const QInt &a);
 	QInt operator/(const QInt &a);
+	QInt operator&(QInt a);
+	QInt operator|(QInt a);
+	QInt operator^(QInt a);
+	QInt operator~();
 
 };
 void ScanQInt(QInt &z);
