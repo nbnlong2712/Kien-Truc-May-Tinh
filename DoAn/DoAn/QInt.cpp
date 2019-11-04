@@ -44,24 +44,51 @@ QInt QInt::operator+(QInt a) {
 					else
 						if ((((data[i] >> (32 - j - 1)) & 1) + ((a.data[i] >> (32 - j - 1)) & 1) + nho) == 3) {
 							nho = 1;
-							c.data[i] = c.data[i] | (0 << (32 - j - 1));
+							c.data[i] = c.data[i] | (1 << (32 - j - 1));
 						}
-
 		}
 	}
 	return c;
 };
 QInt QInt::operator-(QInt a) {
-	QInt c;
-	QInt k = daobitbu2(a);
-	c=*this+k;
-	return c;
+	return *this+daobitbu2(a);
 };
-//QInt QInt::operator*(QInt a) {
-//	QInt b;
-//	return b;
-//
-//};
+QInt QInt::operator*(QInt a) {
+	QInt tichcucbo;
+	QInt kq;
+	QInt zero;
+	QInt temp = *this;
+	for (int i = 3; i >=0; i--) {
+		for (int j = 31; j>=0; j--) {
+			// G2 > SKT
+			if (i == 3 && j == 31) {
+				if (((a.data[i] >> (32 - j - 1)) & 1) == 0) {
+					tichcucbo = zero;
+					kq = tichcucbo;
+					DichTrai(temp);
+				}
+				else
+					if (((a.data[i] >> (32 - j - 1)) & 1) == 1) {
+						tichcucbo = temp;
+					kq = tichcucbo;
+					DichTrai(temp);
+				}
+			}else// cac th con lai dich trai
+			if (((a.data[i] >> (32 - j - 1)) & 1) == 0) {
+				tichcucbo = zero;
+				kq = kq + tichcucbo;
+				DichTrai(temp);
+			}else
+				if (((a.data[i] >> (32 - j - 1)) & 1) == 1) {
+					tichcucbo = temp;
+					kq = kq + tichcucbo;
+					DichTrai(temp);
+				}
+		}
+	}
+	return kq;
+
+};
 //QInt QInt::operator/(QInt a) {
 //	QInt b;
 //	return b;
@@ -138,11 +165,7 @@ void PrintQInt(QInt &z) {
 	}
 	cout << endl;
 }
-//void ShiftRight(int &c,int a[32],int q[32]) {
-//	for (int i = 0; i < n; i++) {
-//		a.data[3] >> 1;
-//	}
-//};
+
 bool operator ==(QInt a, QInt b) {
 	int dem = 0;
 	QInt c;
@@ -218,11 +241,11 @@ void DichTrai(QInt &a) {
 	for (int i = 0; i < 4; i++) {
 		a.data[i] = { 0 };
 	}
-	cout << endl;
+	//cout << endl;
 	/*for (int i = 0; i < 128; i++) {
 		cout << temp[i];
 	}*/
-	cout << endl;
+	//cout << endl;
 	int r = 0;
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 32; j++) {
@@ -276,3 +299,4 @@ void ror(QInt &a) {
 	DichPhai(a);
 	a.data[0] = a.data[0] | (luu << (32-1));
 };// xoay trai
+
