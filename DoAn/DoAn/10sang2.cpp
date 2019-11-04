@@ -85,12 +85,20 @@ string daoBit(string k)
 }
 string Doi10sang2(string a) {
 	string bit, b, bit1 ="1",input, result;
+	int sentinel = 0; // Xet truong hop so thap phan nhap vao la 0
 	for (int i = 0; i < a.size(); i++)
 	{
 		if (a.substr(i, 1) != "0") {
 			a = a.substr(i);
+			sentinel++;
 			break;
 		}
+	}
+	if (sentinel == 0) { // truong hop nguoi dung nhap vao day so 0
+		sentinel = a.size();
+		for (int i = 1; i <= 128 - sentinel; i++) // Them so 0 cho du 128 bit
+			a += "0";
+		return a;
 	}
 	input = a;
 	if (a[0] == '-')
