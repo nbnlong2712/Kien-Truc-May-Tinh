@@ -89,11 +89,41 @@ QInt QInt::operator*(QInt a) {
 	return kq;
 
 };
-//QInt QInt::operator/(QInt a) {
-//	QInt b;
-//	return b;
-//
-//};
+QInt QInt::operator/(QInt a) {
+	QInt Q=*this;
+	QInt A;
+	QInt tam;
+	for (int i = 0; i < 128; i++) {
+		if (((Q.data[0] >> (32 - 1)) & 1) == 0) {
+			DichTrai(Q);
+			DichTrai(A);
+			tam = A;
+			A = A - a;
+				if (((A.data[0] >> (32 - 1)) & 1) == 0) {
+					Q.data[3] = Q.data[3] | (1 << (32 - 1 - 31));
+				}else
+					if (((A.data[0] >> (32 - 1)) & 1) == 1) {
+						A = tam;
+					}
+		}else
+			if (((Q.data[0] >> (32 - 1)) & 1) == 1) {
+				DichTrai(Q);
+				DichTrai(A);
+				A.data[3] = A.data[3] | (1 << (32 - 1 - 31));
+				tam = A;
+				A = A -a;
+				
+					if (((A.data[0] >> (32 - 1)) & 1) == 0) {
+						Q.data[3] = Q.data[3] | (1 << (32 - 1 - 31));
+					}
+					else
+					if (((A.data[0] >> (32 - 1)) & 1) == 1) {
+						A = tam;
+					}	
+			}
+	}
+	return Q;
+};
 QInt QInt::operator&( QInt a) {
 	QInt c;
 	for (int i = 0; i < 4; i++) {
