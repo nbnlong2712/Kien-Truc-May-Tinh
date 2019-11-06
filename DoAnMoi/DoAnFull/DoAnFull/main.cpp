@@ -15,7 +15,7 @@ int main() {
 	cout << endl;
 	//cout << (b >= a);
 	QInt c;
-	c = a / b;
+	c = a + b;
 	PrintQInt(c);
 	cout << endl;
 

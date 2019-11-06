@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include"QInt.h"
 
-
+// giup 2 chuoi co cung do dai 128 
 void XuLiChuoi(string a, string b) {
 	while (a.size() != b.size())          // xử lý sao cho độ dài 2 chuỗi số bằng nhau
 	{
@@ -10,6 +10,7 @@ void XuLiChuoi(string a, string b) {
 		else b = "0" + b;
 	}
 }
+// 10 -> 2 string // khong dung nua
 string StrToBi(string a) {
 	if (a == "0") {
 		return a;
@@ -49,7 +50,7 @@ string StrToBi(string a) {
 	}
 	//cout << bit << endl;
 	return bit;
-}
+} //
 
 string luyThua2(int n)
 {
@@ -174,7 +175,7 @@ string he2sang10(string he2)
 
 
 
-
+// khong dung
 string operator&(string a, string b) {
 
 	while (a.size() != b.size())               // xử lý sao cho độ dài 2 chuỗi số bằng nhau
@@ -192,7 +193,7 @@ string operator&(string a, string b) {
 	}
 	return c;
 }
-
+// khong dung
 string operator|(string a, string b) {
 
 	XuLiChuoi(a, b);
@@ -205,6 +206,7 @@ string operator|(string a, string b) {
 	}
 	return c;
 }
+// khong dung
 string operator ^(string a, string b) {
 
 	XuLiChuoi(a, b);
@@ -218,8 +220,6 @@ string operator ^(string a, string b) {
 	return c;
 }
 
-
-//
 string cong2Bit(string a, string b)
 {
 	string c;

@@ -1,6 +1,7 @@
 #pragma once
 #include"QInt.h"
 #include"ChuyenDoi.h"
+// khoi tao tat ca QInt deu la 0
 QInt::QInt() {
 	for (int i = 0; i < 4; i++) {
 		data[i] = { 0 };
@@ -16,6 +17,7 @@ QInt daobitbu2(QInt &a) {
 	a = a + b;
 	return a;
 }
+// cac toan tu gan
 QInt QInt::operator=(const QInt &a) {
 	QInt c;
 	for (int i = 0; i < 4; i++) {
@@ -23,6 +25,7 @@ QInt QInt::operator=(const QInt &a) {
 	}
 	return *this;
 };
+// cac toan tu + - * /
 QInt QInt::operator+(QInt a) {
 	int nho = 0;
 	QInt c;
@@ -92,7 +95,6 @@ QInt QInt::operator*(QInt a) {
 	return kq;
 
 };
-
 QInt QInt::operator/(QInt a) {
 	QInt Q = *this;
 	QInt A;
@@ -130,6 +132,8 @@ QInt QInt::operator/(QInt a) {
 	}
 	return Q;
 };
+
+// or and xor not
 QInt QInt::operator&(QInt a) {
 	QInt c;
 	for (int i = 0; i < 4; i++) {
@@ -166,6 +170,8 @@ QInt QInt::operator~() {
 	}
 	return c;
 };
+
+// nhap xuat
 void ScanQInt(QInt &z) {
 	cout << endl;
 	cout << "nhap chuoi:";
@@ -196,6 +202,7 @@ void PrintQInt(QInt &z) {
 	cout << endl;
 }
 
+// so sanh
 bool operator ==(QInt a, QInt b) {
 	int dem = 0;
 	QInt c;
@@ -226,7 +233,6 @@ bool operator >(QInt a, QInt b) {
 	return false;
 
 }
-
 bool operator <(QInt a, QInt b) {
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 32; j++) {
@@ -241,7 +247,6 @@ bool operator <(QInt a, QInt b) {
 	}
 	return false;
 }
-
 bool operator >=(QInt a, QInt b) {
 	if (a > b || a == b) {
 		return true;
@@ -254,6 +259,8 @@ bool operator <=(QInt a, QInt b) {
 	}
 	return false;
 }
+
+// dich trai dich phai
 void DichTrai(QInt &a) {
 	int temp[128];
 	int k = 0;
@@ -315,13 +322,14 @@ void DichPhai(QInt &a) {
 
 }
 
+
+// xoay trai xoay phai
 void rol(QInt &a) {
 	int luu;
 	luu = ((a.data[0] >> (32 - 1)) & 1);
 	DichTrai(a);
 	a.data[3] = a.data[3] | (luu << 32);
-};// xoay trai
-
+};
 void ror(QInt &a) {
 	int luu;
 	luu = ((a.data[3] >> (0)) & 1);
@@ -331,6 +339,7 @@ void ror(QInt &a) {
 	a.data[0] = a.data[0] | (luu << (32 - 1));
 };// xoay trai
 
+// Lay dang string cua QInt he 2
 string TraVeStringHe2(QInt &a) {
 	string s;
 	for (int j = 0; j < 4; j++) {
