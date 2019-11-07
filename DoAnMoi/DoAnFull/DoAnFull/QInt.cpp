@@ -177,7 +177,7 @@ void ScanQInt(QInt &z) {
 	cout << "nhap chuoi:";
 	string b;
 	getline(cin, b);
-	string c = Doi10sang2(b);
+	string c = Doi16sang2(b);
 	while (c.length() != 128) {
 		c = '0' + c;
 	}
