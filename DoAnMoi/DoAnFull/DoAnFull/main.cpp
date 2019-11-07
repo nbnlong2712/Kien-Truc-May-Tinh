@@ -11,9 +11,12 @@ int main() {
 	QInt b;
 	ScanQInt(b);
 	PrintQInt(b);
-	QInt c;
-	c = a / b;
-	PrintQInt(c);	
+
+	b = b * a;
+
+	string s = TraVeStringHe2(b);
+	string k = He2sang16(s);
+	cout << k;
 
 
 
