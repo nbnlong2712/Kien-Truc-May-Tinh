@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 ﻿  QInt.cpp
 c:\users\baoson\desktop\doan\kien-truc-may-tinh\doanmoi\doanfull\doanfull\qint.cpp(345): warning C4293: '<<': shift count negative or too big, undefined behavior
   DoAnFull.vcxproj -> C:\Users\BaoSon\Desktop\DoAn\Kien-Truc-May-Tinh\DoAnMoi\DoAnFull\Debug\DoAnFull.exe
+=======
+﻿  main.cpp
+  DoAnFull.vcxproj -> C:\Users\a\Desktop\gitKienTrucMayTinh\Kien-Truc-May-Tinh\DoAnMoi\DoAnFull\Debug\DoAnFull.exe
+>>>>>>> 0bd9015f036c8f8fb74170f6a6e190c39e37e1e3
