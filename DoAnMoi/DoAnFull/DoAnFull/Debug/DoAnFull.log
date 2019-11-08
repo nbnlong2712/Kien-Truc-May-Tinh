@@ -1,2 +1,22 @@
-﻿  main.cpp
+﻿  ChuyenDoi.cpp
+C:\Users\a\Desktop\gitKienTrucMayTinh\Kien-Truc-May-Tinh\DoAnMoi\DoAnFull\DoAnFull\ChuyenDoi.cpp(37,11): warning C4018: '<': signed/unsigned mismatch
+C:\Users\a\Desktop\gitKienTrucMayTinh\Kien-Truc-May-Tinh\DoAnMoi\DoAnFull\DoAnFull\ChuyenDoi.cpp(52,16): warning C4018: '<': signed/unsigned mismatch
+C:\Users\a\Desktop\gitKienTrucMayTinh\Kien-Truc-May-Tinh\DoAnMoi\DoAnFull\DoAnFull\ChuyenDoi.cpp(106,15): warning C4018: '<': signed/unsigned mismatch
+C:\Users\a\Desktop\gitKienTrucMayTinh\Kien-Truc-May-Tinh\DoAnMoi\DoAnFull\DoAnFull\ChuyenDoi.cpp(172,15): warning C4018: '<': signed/unsigned mismatch
+C:\Users\a\Desktop\gitKienTrucMayTinh\Kien-Truc-May-Tinh\DoAnMoi\DoAnFull\DoAnFull\ChuyenDoi.cpp(205,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\a\Desktop\gitKienTrucMayTinh\Kien-Truc-May-Tinh\DoAnMoi\DoAnFull\DoAnFull\ChuyenDoi.cpp(217,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\a\Desktop\gitKienTrucMayTinh\Kien-Truc-May-Tinh\DoAnMoi\DoAnFull\DoAnFull\ChuyenDoi.cpp(242,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\a\Desktop\gitKienTrucMayTinh\Kien-Truc-May-Tinh\DoAnMoi\DoAnFull\DoAnFull\ChuyenDoi.cpp(257,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\a\Desktop\gitKienTrucMayTinh\Kien-Truc-May-Tinh\DoAnMoi\DoAnFull\DoAnFull\ChuyenDoi.cpp(286,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\a\Desktop\gitKienTrucMayTinh\Kien-Truc-May-Tinh\DoAnMoi\DoAnFull\DoAnFull\ChuyenDoi.cpp(294,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\a\Desktop\gitKienTrucMayTinh\Kien-Truc-May-Tinh\DoAnMoi\DoAnFull\DoAnFull\ChuyenDoi.cpp(313,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\a\Desktop\gitKienTrucMayTinh\Kien-Truc-May-Tinh\DoAnMoi\DoAnFull\DoAnFull\ChuyenDoi.cpp(337,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\a\Desktop\gitKienTrucMayTinh\Kien-Truc-May-Tinh\DoAnMoi\DoAnFull\DoAnFull\ChuyenDoi.cpp(343,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\a\Desktop\gitKienTrucMayTinh\Kien-Truc-May-Tinh\DoAnMoi\DoAnFull\DoAnFull\ChuyenDoi.cpp(364,21): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\a\Desktop\gitKienTrucMayTinh\Kien-Truc-May-Tinh\DoAnMoi\DoAnFull\DoAnFull\ChuyenDoi.cpp(382,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\a\Desktop\gitKienTrucMayTinh\Kien-Truc-May-Tinh\DoAnMoi\DoAnFull\DoAnFull\ChuyenDoi.cpp(484,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\a\Desktop\gitKienTrucMayTinh\Kien-Truc-May-Tinh\DoAnMoi\DoAnFull\DoAnFull\ChuyenDoi.cpp(507,16): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\a\Desktop\gitKienTrucMayTinh\Kien-Truc-May-Tinh\DoAnMoi\DoAnFull\DoAnFull\ChuyenDoi.cpp(524,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\a\Desktop\gitKienTrucMayTinh\Kien-Truc-May-Tinh\DoAnMoi\DoAnFull\DoAnFull\ChuyenDoi.cpp(539,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\a\Desktop\gitKienTrucMayTinh\Kien-Truc-May-Tinh\DoAnMoi\DoAnFull\DoAnFull\ChuyenDoi.cpp(552,23): warning C4018: '<': signed/unsigned mismatch
   DoAnFull.vcxproj -> C:\Users\a\Desktop\gitKienTrucMayTinh\Kien-Truc-May-Tinh\DoAnMoi\DoAnFull\Debug\DoAnFull.exe

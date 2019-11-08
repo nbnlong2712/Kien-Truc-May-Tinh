@@ -4,7 +4,7 @@
 
 int main() {
 
-	QInt a;
+	/*QInt a;
 	
 	ScanQInt(a);
 	PrintQInt(a);
@@ -12,7 +12,7 @@ int main() {
 	ScanQInt(b);
 	PrintQInt(b);
 
-	b = b * a;
+	b = b + a;
 
 	string s = TraVeStringHe2(b);
 	string k = He2sang16(s);
@@ -21,5 +21,8 @@ int main() {
 
 
 
-	return 0;
+	return 0;*/
+	string a = "1110", b = "10110000111";
+	string result = Cong2Bit(a, b);
+	cout << result;
 }
