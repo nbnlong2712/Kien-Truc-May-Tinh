@@ -219,6 +219,14 @@ bool operator ==(QInt a, QInt b) {
 		return false;
 }
 bool operator >(QInt a, QInt b) {
+	
+	if ((((a.data[0] >> (32 - 1)) & 1) == 1)&& (((b.data[0] >> (32 - 1)) & 1)==0) ){
+		return false;
+	}else
+		if ((((a.data[0] >> (32 - 1)) & 1) == 0) && (((b.data[0] >> (32 - 1)) & 1)==1)) {
+			return true;
+		}
+
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 32; j++) {
 			if (((a.data[i] >> (32 - j - 1))) > ((b.data[i] >> (32 - j - 1)))) {
@@ -234,6 +242,13 @@ bool operator >(QInt a, QInt b) {
 
 }
 bool operator <(QInt a, QInt b) {
+	if ((((a.data[0] >> (32 - 1)) & 1) == 1) && (((b.data[0] >> (32 - 1)) & 1) == 0)) {
+		return true;
+	}
+	else
+		if ((((a.data[0] >> (32 - 1)) & 1) == 0) && (((b.data[0] >> (32 - 1)) & 1) == 1)) {
+			return false;
+		}
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 32; j++) {
 			if (((a.data[i] >> (32 - j - 1))) < ((b.data[i] >> (32 - j - 1)))) {

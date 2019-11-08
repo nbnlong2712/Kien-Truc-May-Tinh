@@ -7,17 +7,18 @@ int main() {
 	QInt a;
 	ScanQInt(a);
 	PrintQInt(a);
-
+		
 
 	QInt b;
 	ScanQInt(b);
 	PrintQInt(b);
 	cout << endl;
-	//cout << (b >= a);
-	QInt c;
+
+	cout << (b > a);
+	/*QInt c;
 	c = a + b;
 	PrintQInt(c);
-	cout << endl;
+	cout << endl;*/
 
 
 

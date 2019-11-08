@@ -120,10 +120,12 @@
   <ItemGroup>
     <ClCompile Include="ChuyenDoi.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Qfloat.cpp" />
     <ClCompile Include="QInt.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChuyenDoi.h" />
+    <ClInclude Include="Qfloat.h" />
     <ClInclude Include="QInt.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
