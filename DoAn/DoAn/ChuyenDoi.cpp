@@ -47,7 +47,7 @@ string StrToBi(string a) {
 	return bit;
 }
 
-string luyThua2(int n)
+string LuyThua2(int n)
 {
 	string k = "1";                   // khởi tạo k
 	if (n == 0)
@@ -103,7 +103,7 @@ string luyThua2(int n)
 	return k;
 }
 
-string congHaiSoHe10(string a, string b)
+string CongHaiSoHe10(string a, string b)
 {
 	string c;
 	int nho = 0, so1, so2, so3;
@@ -157,7 +157,7 @@ string congHaiSoHe10(string a, string b)
 					so3 = so3 % 10;
 					nho = 1;
 				}
-				else nho=0;
+				else nho = 0;
 				c = to_string(so3) + c;
 			}
 		}
@@ -165,18 +165,7 @@ string congHaiSoHe10(string a, string b)
 	return c;
 }
 
-string he2sang10(string he2)
-{
-	string k = "0";
-	for (int i = 0; i < he2.size(); i++)
-	{
-		if (he2[i] == '1')
-			k = congHaiSoHe10(k, luyThua2(he2.size() - i - 1));
-	}
-	return k;
-}
-
-string cong2Bit(string a, string b)
+string Cong2Bit(string a, string b)
 {
 	string c;
 	int nho = 0, so1, so2, so3;
@@ -239,7 +228,7 @@ string cong2Bit(string a, string b)
 					so3 = 1;
 					nho = 1;
 				}
-				else nho=0;
+				else nho = 0;
 				c = to_string(so3) + c;
 			}
 		}
@@ -247,7 +236,7 @@ string cong2Bit(string a, string b)
 	return c;
 }
 
-string daoBit(string k)
+string DaoBit(string k)
 {
 	string c = "";
 	for (int i = 0; i < k.size(); i++)
@@ -257,6 +246,253 @@ string daoBit(string k)
 		else c += "1";
 	}
 	return c;
+}
+
+string Doi10sang2(string a) {
+	string bit, b, bit1 = "1", input, result;
+	int sentinel = 0; // Xet truong hop so thap phan nhap vao la 0
+	for (int i = 0; i < a.size(); i++)
+	{
+		if (a.substr(i, 1) != "0") {
+			a = a.substr(i);
+			sentinel++;
+			break;
+		}
+	}
+	if (sentinel == 0) { // truong hop nguoi dung nhap vao day so 0
+		sentinel = a.size();
+		for (int i = 1; i <= 128 - sentinel; i++) // Them so 0 cho du 128 bit
+			a += "0";
+		return a;
+	}
+	input = a;
+	if (a[0] == '-')
+		a = a.substr(1);
+	int temp = atoi(a.substr(a.size() - 1, 1).c_str()) % 2;
+	bit = to_string(temp);
+	while (a.size() != 1 || atoi(a.c_str()) != 1) {
+		if (a.size() == 1 && atoi(a.c_str()) > 1)
+		{
+			b = to_string(atoi(a.c_str()) / 2);
+		}
+		else {
+			for (int i = 0; i < a.size() - 1; i++)
+			{
+				string k;
+				if (i == 0)
+					b = to_string(atoi((a.substr(i, 2)).c_str()) / 2);
+				else {
+					k = to_string(atoi((a.substr(i, 2)).c_str()) / 2);
+					b += k[k.size() - 1];
+				}
+			}
+		}
+		a = b;
+		temp = atoi(a.substr(a.size() - 1, 1).c_str()) % 2;
+		bit += to_string(temp);
+	}
+	for (int i = 0; i < bit.length() / 2; i++) // Dao bit
+	{
+		char temp = bit[i];
+		bit[i] = bit[bit.length() - 1 - i];
+		bit[bit.length() - 1 - i] = temp;
+	}
+	if (input[0] == '-') {
+		int temp3 = bit.size();
+		string temp2;
+		for (int i = 1; i <= 128 - temp3; i++) // Them so 0 cho du 128 bit
+			temp2 += "0";
+		temp2 += bit;
+		return result = Cong2Bit(DaoBit(temp2), bit1);
+	}
+	else
+		return bit;
+}
+
+string He2sang10(string he2)
+{
+	string k = "0";
+	string h2;
+	if (he2.size() == 128 && he2[0] == '1')
+	{
+		h2 = Cong2Bit(DaoBit(he2), "1");
+		if (h2 == he2)
+			return "0";
+		else
+		{
+			for (int i = 0; i < h2.size(); i++)
+			{
+				if (h2[i] == '1')
+					k = CongHaiSoHe10(k, LuyThua2(h2.size() - i - 1));
+			}
+		}
+		return "-" + k;
+	}
+	for (int i = 0; i < he2.size(); i++)
+	{
+		if (he2[i] == '1')
+			k = CongHaiSoHe10(k, LuyThua2(he2.size() - i - 1));
+	}
+	return k;
+}
+
+string ChiaCho2(string a)
+{
+	string b;
+	while (a[0] == '0')
+		a = a.substr(1, a.size() - 1);
+	if (a.size() == 1 && atoi(a.c_str()) > 1)
+	{
+		b = to_string(atoi(a.c_str()) / 2);
+	}
+	else
+	{
+		for (int i = 0; i < a.size() - 1; i++)
+		{
+			string k;
+			if (i == 0)
+				b = to_string(atoi((a.substr(i, 2)).c_str()) / 2);
+			else {
+				k = to_string(atoi((a.substr(i, 2)).c_str()) / 2);
+				b += k[k.size() - 1];
+			}
+		}
+	}
+	return b;
+}
+
+string He2sang10float(string he2)
+{
+	int MU = 16383, linh_canh = 0;
+	string bit_dau, bit_mu, bit_sau;
+	string dau, nguyen, thap_phan = "0";
+	int mu;
+	bit_dau = he2.substr(0, 1);    // tach bit dau
+	bit_mu = he2.substr(1, 15);    // tach day bit bieu dien so mu
+	bit_sau = he2.substr(16, he2.size() - 16); // tach day bit bieu dien phan dinh tri
+	
+	for (int i = 0; i < bit_mu.size(); i++) //kiem tra truong hop so mu toan chu so 0 - ko tinh duoc
+		if (bit_mu[i] == '1') linh_canh = 1;
+	if (linh_canh == 0)
+		return "0";
+
+	linh_canh = 0;
+	for (int i = 0; i < bit_mu.size(); i++) //kiem tra truong hop so mu toan chu so 1 - ko tinh duoc
+		if (bit_mu[i] == '0') linh_canh = 1;
+	if (linh_canh == 0)
+		return "0";
+
+	if (bit_dau == "1") dau = "-";
+
+	mu = stoi(He2sang10(bit_mu)) - MU;
+	
+	bit_sau = "1" + bit_sau;      //1.E     
+	
+	string bit_sau2 = bit_sau.substr(0, mu + 1);
+	nguyen = He2sang10(bit_sau.substr(0, mu + 1));
+	if (bit_sau2 == bit_sau)    // kiem tra xem so co dau "," khong
+		return dau + nguyen;
+	else {
+		string so_bi_chia = "1";           // so sanh voi bit_sau.size(), gan them cac so 0 vao sau cung so_bi_chia
+		bit_sau = bit_sau.substr(mu + 1, bit_sau.size() - mu - 1);  //lay phan bit bieu dien phan sau dau phay cua so thap phan
+		
+		while (so_bi_chia.size() != bit_sau.size() + 1)
+			so_bi_chia = so_bi_chia + "0";
+		for (int i = 0; i <= bit_sau.size(); i++)
+		{
+			string thuong = so_bi_chia;
+			if (bit_sau[i] == '1')
+			{
+				for (int j = 0; j < i + 1; j++)
+					thuong = ChiaCho2(thuong);
+				thap_phan = CongHaiSoHe10(thap_phan, thuong);
+			}
+		}
+		return (dau + nguyen + "." + thap_phan).substr(0, 28);
+	}
+}
+
+string He10sang2float(string he10)
+{
+	int MU = 16383;
+	int linh_canh = 0;
+	for (int i = 0; i < he10.size(); i++)
+		if (he10[i] != '0') linh_canh = 1;
+	if (linh_canh == 0)
+		return "0";
+	if (he10.find(".") < he10.size())
+	{
+		while (he10.find(".") == he10.size() - 1 || (he10[he10.size() - 1] == '0'&&he10.find(".") < he10.size() - 1))
+			he10.pop_back();
+	}
+	// dung cong thuc 1.E*2^F
+	string bit, bit_sau, bit_mu, bit_dau, nguyen, thap_phan, test = "1";
+	int mu;
+	if (he10.find(".") > he10.size())            // kiem tra xem so co dau phay khong
+	{
+		if (he10[0] == '-')                      // neu he10 la so am thi cat con me no bit dau tien
+		{ 
+			he10 = he10.substr(1);
+			bit_dau = "1";
+		}          
+		else bit_dau = "0";
+
+		if (he10 == "1")                          // xet tr/h he10 bang 1
+		{
+			bit_sau = "0";
+			mu = MU;                             // so mu F bang 0
+		}
+		else {
+			bit_sau = Doi10sang2(he10);
+			bit_sau = bit_sau.substr(1);                          // cat bit dau, lay phan thap phan nam sau dau phay
+			mu = bit_sau.size() + MU;                            // lay so mu F
+		}
+		bit_mu = Doi10sang2(to_string(mu));
+		while (bit_mu.size() < 15)                            // cong phan bieu dien F cho du 15 chu so
+			bit_mu = "0" + bit_mu;
+		bit = bit_dau  + bit_mu + bit_sau;
+		return bit;
+	}
+	else {
+		nguyen = he10.substr(0, he10.find("."));         // cat lay phan nguyen
+		thap_phan = he10.substr(he10.find(".") + 1, he10.size() - he10.find("."));   // cat lay phan thap phan
+
+		if (nguyen[0] == '-') 
+		{
+			nguyen = nguyen.substr(1);
+			bit_dau = "1";
+		}
+		else bit_dau = "0";
+
+		bit_sau = Doi10sang2(nguyen);
+		bit_sau = bit_sau.substr(1);
+
+		mu = bit_sau.size() + MU;
+		bit_mu = Doi10sang2(to_string(mu));
+		while (bit_mu.size() < 15)                            // cong phan bieu dien F cho du 15 chu so
+			bit_mu = "0" + bit_mu;
+
+		thap_phan = "0" + thap_phan;                     // them so 0 vao truoc phan thap phan
+		while (test.size() < thap_phan.size())           // test = 1000...00 
+			test = test + "0";
+		while (thap_phan != test)
+		{
+			thap_phan = CongHaiSoHe10(thap_phan, thap_phan);
+			if (thap_phan[0] == '0') bit_sau = bit_sau + '0';
+			else if (thap_phan[0] == '1'&&thap_phan == test) {
+				bit_sau = bit_sau + "1";
+				break;
+			}
+			else {
+				bit_sau = bit_sau + "1";
+				thap_phan[0] = '0';
+			}
+			if (bit_sau.size() == 112)
+				break;
+		}
+		bit = bit_dau + bit_mu + bit_sau;
+		return bit;
+	}
 }
 
 string operator&(string a,string b) {
@@ -276,7 +512,6 @@ string operator&(string a,string b) {
 	}
 	return c;
 }
-
 string operator|(string a, string b) {
 	
 	XuLiChuoi(a, b);
@@ -301,16 +536,15 @@ string operator ^(string a, string b) {
 	}
 	return c;
 }
-
 string operator ~(string a) {
 
-	string c=daoBit(string a)
+	string c=DaoBit(string a)
 
 	return c;
 }
-string he2sang16(string he2)
+string He2sang16(string he2)
 {
-	return he10sang16(he2sang10(he2));
+	return He10sang16(He2sang10(he2));
 }
 
 

@@ -177,7 +177,7 @@ void ScanQInt(QInt &z) {
 	cout << "nhap chuoi:";
 	string b;
 	getline(cin, b);
-	string c = Doi10sang2(b);
+	string c = Doi16sang2(b);
 	while (c.length() != 128) {
 		c = '0' + c;
 	}
@@ -219,11 +219,18 @@ bool operator ==(QInt a, QInt b) {
 		return false;
 }
 bool operator >(QInt a, QInt b) {
+<<<<<<< HEAD
 	
 	if ((((a.data[0] >> (32 - 1)) & 1) == 1)&& (((b.data[0] >> (32 - 1)) & 1)==0) ){
 		return false;
 	}else
 		if ((((a.data[0] >> (32 - 1)) & 1) == 0) && (((b.data[0] >> (32 - 1)) & 1)==1)) {
+=======
+	if((((a.data[0] >> (32 - 1)) & 1) == 1)&& (((b.data[0] >> (32 - 1)) & 1) == 0)) {
+		return false;
+	}else
+		if ((((a.data[0] >> (32 - 1)) & 1) == 0) && (((b.data[0] >> (32 - 1)) & 1) == 1)) {
+>>>>>>> 86143a2454f01b64aebf28286e04fbcc9aa724e2
 			return true;
 		}
 

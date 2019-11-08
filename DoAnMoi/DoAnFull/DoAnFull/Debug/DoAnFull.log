@@ -1,2 +1,9 @@
+<<<<<<< HEAD
 ﻿  main.cpp
   DoAnFull.vcxproj -> C:\Users\badao\Desktop\DoAn\Kien-Truc-May-Tinh\DoAnMoi\DoAnFull\Debug\DoAnFull.exe
+=======
+﻿  QInt.cpp
+C:\Users\a\Desktop\gitKienTrucMayTinh\Kien-Truc-May-Tinh\DoAnMoi\DoAnFull\DoAnFull\QInt.cpp(345,36): warning C4293: '<<': shift count negative or too big, undefined behavior
+  LINK : C:\Users\a\Desktop\gitKienTrucMayTinh\Kien-Truc-May-Tinh\DoAnMoi\DoAnFull\Debug\DoAnFull.exe not found or not built by the last incremental link; performing full link
+  DoAnFull.vcxproj -> C:\Users\a\Desktop\gitKienTrucMayTinh\Kien-Truc-May-Tinh\DoAnMoi\DoAnFull\Debug\DoAnFull.exe
+>>>>>>> 86143a2454f01b64aebf28286e04fbcc9aa724e2
