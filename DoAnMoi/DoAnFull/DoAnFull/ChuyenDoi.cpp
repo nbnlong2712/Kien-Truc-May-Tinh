@@ -1,7 +1,11 @@
 ﻿#pragma once
+//#include"QInt.h"
+#include"ChuyenDoi.h"
+// xu li chuoi cho 2 chuoi co cung do dai
+#pragma once
 #include"QInt.h"
 // xu li chuoi cho 2 chuoi co cung do dai
-void XuLiChuoi(string a,string b) {
+void XuLiChuoi(string a, string b) {
 	while (a.size() != b.size())          // xử lý sao cho độ dài 2 chuỗi số bằng nhau
 	{
 		if (a.size() < b.size())
@@ -9,7 +13,6 @@ void XuLiChuoi(string a,string b) {
 		else b = "0" + b;
 	}
 }
-
 string LuyThua2(int n)
 {
 	string k = "1";                   // khởi tạo k
@@ -31,9 +34,9 @@ string LuyThua2(int n)
 				c = b + c;                                         // đưa b lên đầu
 				nho = 0;
 			}
-			else 
+			else
 			{
-				so = atoi(k.substr(j , 1).c_str()) * 2;               // biến số bằng chữ số vị trí j nhân 2
+				so = atoi(k.substr(j, 1).c_str()) * 2;               // biến số bằng chữ số vị trí j nhân 2
 				if (j < k.size() - 1 && atoi(k.substr(j + 1, 1).c_str()) >= 5)  // nếu chữ số liền sau chữ số ở vị trí i >=5 thì biến nhớ =1
 				{
 					so = so % 10;                                // chỉ lấy phần đơn vị
@@ -46,7 +49,7 @@ string LuyThua2(int n)
 						so = so % 10;                               // chỉ lấy chữ số hàng đơn vị
 						nho = 1;
 					}
-					else 
+					else
 						nho = 0;                                  //nếu chữ số cuối cùng <5 thì nhớ =0
 				}
 				else if (j < k.size() - 1 && atoi(k.substr(j + 1, 1).c_str()) < 5) // nếu chữ số liền sau chữ số ở vị trí i < 5 thì biến nhớ = 0
@@ -57,7 +60,7 @@ string LuyThua2(int n)
 				if (j == k.size() - 1)
 					b = to_string(so);                          // nếu là chữ số vị trí cuối cùng thì không cộng thêm biến nhớ
 				else b = to_string(so + nho);                   // nếu không là chữ số vị trí cuối cùng thì cộng thêm biến nhớ
-				
+
 				c = b + c;
 			}
 		}
@@ -65,7 +68,6 @@ string LuyThua2(int n)
 	}
 	return k;
 }
-
 string CongHaiSoHe10(string a, string b)
 {
 	string c;
@@ -87,7 +89,7 @@ string CongHaiSoHe10(string a, string b)
 			else if ((atoi(a.substr(i + 1, 1).c_str()) + atoi(b.substr(i + 1, 1).c_str())) >= 10)  //     xét chữ số liền sau chữ số đầu của chuỗi a và b,
 				nho = 1;                                                                      // nếu tổng đó >10 thì nhớ =1, else nhớ =0 
 			else nho = 0;
-			so3 = so1 + so2 + nho;                   
+			so3 = so1 + so2 + nho;
 			c = to_string(so3) + c;     // ghép so3 vào đầu chuỗi c
 		}
 		else
@@ -146,7 +148,7 @@ string Cong2Bit(string a, string b)
 		{
 			if (nho == 1)
 				nho = 1;
-			else if ((atoi(a.substr(i + 1, 1).c_str()) + atoi(b.substr(i + 1, 1).c_str())) ==2)  //     xét chữ số liền sau chữ số đầu của chuỗi a và b,
+			else if ((atoi(a.substr(i + 1, 1).c_str()) + atoi(b.substr(i + 1, 1).c_str())) == 2)  //     xét chữ số liền sau chữ số đầu của chuỗi a và b,
 				nho = 1;                                                                      // nếu tổng đó = 2 thì nhớ = 1, else nhớ = 0 
 			else nho = 0;
 			so3 = so1 + so2 + nho;
@@ -161,7 +163,7 @@ string Cong2Bit(string a, string b)
 			if (i == a.size() - 1)      // xét chữ số cuối của 2 chuỗi a, b, không cộng biến nhớ
 			{
 				so3 = so1 + so2;
-				if (so3 ==2)
+				if (so3 == 2)
 				{
 					so3 = 0;
 					nho = 1;
@@ -198,7 +200,6 @@ string Cong2Bit(string a, string b)
 	}
 	return c;
 }
-
 string DaoBit(string k)
 {
 	string c = "";
@@ -271,7 +272,6 @@ string Doi10sang2(string a) {
 	else
 		return bit;
 }
-
 string He2sang10(string he2)
 {
 	string k = "0";
@@ -333,7 +333,7 @@ string He2sang10float(string he2)
 	bit_dau = he2.substr(0, 1);    // tach bit dau
 	bit_mu = he2.substr(1, 15);    // tach day bit bieu dien so mu
 	bit_sau = he2.substr(16, he2.size() - 16); // tach day bit bieu dien phan dinh tri
-	
+
 	for (int i = 0; i < bit_mu.size(); i++) //kiem tra truong hop so mu toan chu so 0 - ko tinh duoc
 		if (bit_mu[i] == '1') linh_canh = 1;
 	if (linh_canh == 0)
@@ -348,9 +348,9 @@ string He2sang10float(string he2)
 	if (bit_dau == "1") dau = "-";
 
 	mu = stoi(He2sang10(bit_mu)) - MU;
-	
+
 	bit_sau = "1" + bit_sau;      //1.E     
-	
+
 	string bit_sau2 = bit_sau.substr(0, mu + 1);
 	nguyen = He2sang10(bit_sau.substr(0, mu + 1));
 	if (bit_sau2 == bit_sau)    // kiem tra xem so co dau "," khong
@@ -358,7 +358,7 @@ string He2sang10float(string he2)
 	else {
 		string so_bi_chia = "1";           // so sanh voi bit_sau.size(), gan them cac so 0 vao sau cung so_bi_chia
 		bit_sau = bit_sau.substr(mu + 1, bit_sau.size() - mu - 1);  //lay phan bit bieu dien phan sau dau phay cua so thap phan
-		
+
 		while (so_bi_chia.size() != bit_sau.size() + 1)
 			so_bi_chia = so_bi_chia + "0";
 		for (int i = 0; i <= bit_sau.size(); i++)
@@ -556,4 +556,8 @@ string Doi16sang2(string a) {
 		}
 	}
 	return result;
+}
+string Doi16sang10(string he16)
+{
+	return He2sang10(Doi16sang2(he16));
 }

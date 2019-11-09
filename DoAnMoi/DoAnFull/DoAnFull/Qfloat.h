@@ -9,6 +9,6 @@ public:
 	int data[4];
 	Qfloat();
 };
-
-void ScanQInt(Qfloat &z);
-void PrintQInt(Qfloat &z);
+void ScanQfloat(Qfloat &z, int);
+void PrintQfloat(Qfloat &z);
+string TraVeStringHe2float(Qfloat &a);

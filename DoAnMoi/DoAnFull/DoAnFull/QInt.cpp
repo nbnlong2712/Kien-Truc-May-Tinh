@@ -7,6 +7,49 @@ QInt::QInt() {
 		data[i] = { 0 };
 	}
 };
+QInt::QInt(string c) {
+	while (c.length() != 128) {
+		c = '0' + c;
+	}
+	int r = 0;
+
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 32; j++) {
+			this->data[i] = this->data[i] | atoi(c.substr(r, 1).c_str()) << (32 - j - 1);
+			r++;
+		}
+	}
+};
+QInt QInt1(QInt a, string s) {
+	string c = Doi10sang2(s);
+	while (c.length() != 128) {
+		c = '0' + c;
+	}
+	int r = 0;
+
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 32; j++) {
+			a.data[i] = a.data[i] | atoi(c.substr(r, 1).c_str()) << (32 - j - 1);
+			r++;
+		}
+	}
+	return a;
+};
+QInt QInt2(QInt a, string s) {
+	string c = Doi16sang2(s);
+	while (c.length() != 128) {
+		c = '0' + c;
+	}
+	int r = 0;
+
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 32; j++) {
+			a.data[i] = a.data[i] | atoi(c.substr(r, 1).c_str()) << (32 - j - 1);
+			r++;
+		}
+	}
+	return a;
+};
 QInt daobitbu2(QInt &a) {
 	QInt b;
 	b.data[3] = b.data[3] | (1 << 0);
@@ -96,31 +139,22 @@ QInt QInt::operator*(QInt a) {
 
 };
 QInt QInt::operator/(QInt a) {
-	QInt Q = *this;
-	QInt A;
-	QInt tam;
-	for (int i = 0; i < 128; i++) {
-		if (((Q.data[0] >> (32 - 1)) & 1) == 0) {
-			DichTrai(Q);
-			DichTrai(A);
-			tam = A;
-			A = A - a;
-			if (((A.data[0] >> (32 - 1)) & 1) == 0) {
-				Q.data[3] = Q.data[3] | (1 << (32 - 1 - 31));
-			}
-			else
-				if (((A.data[0] >> (32 - 1)) & 1) == 1) {
-					A = tam;
-				}
-		}
-		else
-			if (((Q.data[0] >> (32 - 1)) & 1) == 1) {
+	QInt a1, a2;
+	a1 = *this;
+	a2 = a;
+	if ((((a1.data[0] >> (32 - 1)) & 1) == 1) && ((a2.data[0] >> (32 - 1)) & 1) == 0) {
+		daobitbu2(a1);
+		//cout << daobitbu2am(a1);
+		//daobitbu2am(a2);
+		QInt Q = a1;
+		QInt A;
+		QInt tam;
+		for (int i = 0; i < 128; i++) {
+			if (((Q.data[0] >> (32 - 1)) & 1) == 0) {
 				DichTrai(Q);
 				DichTrai(A);
-				A.data[3] = A.data[3] | (1 << (32 - 1 - 31));
 				tam = A;
-				A = A - a;
-
+				A = A - a2;
 				if (((A.data[0] >> (32 - 1)) & 1) == 0) {
 					Q.data[3] = Q.data[3] | (1 << (32 - 1 - 31));
 				}
@@ -129,8 +163,141 @@ QInt QInt::operator/(QInt a) {
 						A = tam;
 					}
 			}
+			else
+				if (((Q.data[0] >> (32 - 1)) & 1) == 1) {
+					DichTrai(Q);
+					DichTrai(A);
+					A.data[3] = A.data[3] | (1 << (32 - 1 - 31));
+					tam = A;
+					A = A - a2;
+
+					if (((A.data[0] >> (32 - 1)) & 1) == 0) {
+						Q.data[3] = Q.data[3] | (1 << (32 - 1 - 31));
+					}
+					else
+						if (((A.data[0] >> (32 - 1)) & 1) == 1) {
+							A = tam;
+						}
+				}
+		}
+		return Q;
 	}
-	return Q;
+	else
+		if ((((a1.data[0] >> (32 - 1)) & 1) == 1)&& ((a2.data[0] >> (32 - 1)) & 1) == 1) {
+			daobitbu2(a1);
+			daobitbu2(a2);
+			QInt Q = a1;
+			QInt A;
+			QInt tam;
+			for (int i = 0; i < 128; i++) {
+				if (((Q.data[0] >> (32 - 1)) & 1) == 0) {
+					DichTrai(Q);
+					DichTrai(A);
+					tam = A;
+					A = A - a2;
+					if (((A.data[0] >> (32 - 1)) & 1) == 0) {
+						Q.data[3] = Q.data[3] | (1 << (32 - 1 - 31));
+					}
+					else
+						if (((A.data[0] >> (32 - 1)) & 1) == 1) {
+							A = tam;
+						}
+				}
+				else
+					if (((Q.data[0] >> (32 - 1)) & 1) == 1) {
+						DichTrai(Q);
+						DichTrai(A);
+						A.data[3] = A.data[3] | (1 << (32 - 1 - 31));
+						tam = A;
+						A = A - a2;
+
+						if (((A.data[0] >> (32 - 1)) & 1) == 0) {
+							Q.data[3] = Q.data[3] | (1 << (32 - 1 - 31));
+						}
+						else
+							if (((A.data[0] >> (32 - 1)) & 1) == 1) {
+								A = tam;
+							}
+					}
+			}
+			return Q;
+
+		}
+		else
+			if ((((a1.data[0] >> (32 - 1)) & 1) == 0) && ((a2.data[0] >> (32 - 1)) & 1) == 0) {
+		QInt Q = *this;
+		QInt A;
+		QInt tam;
+		for (int i = 0; i < 128; i++) {
+			if (((Q.data[0] >> (32 - 1)) & 1) == 0) {
+				DichTrai(Q);
+				DichTrai(A);
+				tam = A;
+				A = A - a;
+				if (((A.data[0] >> (32 - 1)) & 1) == 0) {
+					Q.data[3] = Q.data[3] | (1 << (32 - 1 - 31));
+				}
+				else
+					if (((A.data[0] >> (32 - 1)) & 1) == 1) {
+						A = tam;
+					}
+			}
+			else
+				if (((Q.data[0] >> (32 - 1)) & 1) == 1) {
+					DichTrai(Q);
+					DichTrai(A);
+					A.data[3] = A.data[3] | (1 << (32 - 1 - 31));
+					tam = A;
+					A = A - a;
+
+					if (((A.data[0] >> (32 - 1)) & 1) == 0) {
+						Q.data[3] = Q.data[3] | (1 << (32 - 1 - 31));
+					}
+					else
+						if (((A.data[0] >> (32 - 1)) & 1) == 1) {
+							A = tam;
+						}
+				}
+		}
+		return Q;
+	}else
+				if ((((a1.data[0] >> (32 - 1)) & 1) == 0) && ((a2.data[0] >> (32 - 1)) & 1) == 1) {
+			QInt Q = *this;
+			QInt A;
+			QInt tam;
+			for (int i = 0; i < 128; i++) {
+				if (((Q.data[0] >> (32 - 1)) & 1) == 0) {
+					DichTrai(Q);
+					DichTrai(A);
+					tam = A;
+					A = A + a;
+					if (((A.data[0] >> (32 - 1)) & 1) == 0) {
+						Q.data[3] = Q.data[3] | (1 << (32 - 1 - 31));
+					}
+					else
+						if (((A.data[0] >> (32 - 1)) & 1) == 1) {
+							A = tam;
+						}
+				}
+				else
+					if (((Q.data[0] >> (32 - 1)) & 1) == 1) {
+						DichTrai(Q);
+						DichTrai(A);
+						A.data[3] = A.data[3] | (1 << (32 - 1 - 31));
+						tam = A;
+						A = A +a;
+
+						if (((A.data[0] >> (32 - 1)) & 1) == 0) {
+							Q.data[3] = Q.data[3] | (1 << (32 - 1 - 31));
+						}
+						else
+							if (((A.data[0] >> (32 - 1)) & 1) == 1) {
+								A = tam;
+							}
+					}
+			}
+			return Q;
+		}
 };
 
 // or and xor not
@@ -172,12 +339,15 @@ QInt QInt::operator~() {
 };
 
 // nhap xuat
-void ScanQInt(QInt &z) {
+void ScanQInt(QInt &z,int luachon) {
 	cout << endl;
 	cout << "nhap chuoi:";
 	string b;
 	getline(cin, b);
-	string c = Doi16sang2(b);
+	string c;
+	if(luachon==1) c = Doi10sang2(b);
+	else if (luachon == 2) c = b;
+	else c = Doi16sang2(b);
 	while (c.length() != 128) {
 		c = '0' + c;
 	}
@@ -219,24 +389,17 @@ bool operator ==(QInt a, QInt b) {
 		return false;
 }
 bool operator >(QInt a, QInt b) {
-<<<<<<< HEAD
-	
-	if ((((a.data[0] >> (32 - 1)) & 1) == 1)&& (((b.data[0] >> (32 - 1)) & 1)==0) ){
+	if ((((a.data[0] >> (32 - 1)) & 1) == 1) && (((b.data[0] >> (32 - 1)) & 1) == 0)) {
 		return false;
-	}else
-		if ((((a.data[0] >> (32 - 1)) & 1) == 0) && (((b.data[0] >> (32 - 1)) & 1)==1)) {
-=======
-	if((((a.data[0] >> (32 - 1)) & 1) == 1)&& (((b.data[0] >> (32 - 1)) & 1) == 0)) {
-		return false;
-	}else
+	}
+	else
 		if ((((a.data[0] >> (32 - 1)) & 1) == 0) && (((b.data[0] >> (32 - 1)) & 1) == 1)) {
->>>>>>> 86143a2454f01b64aebf28286e04fbcc9aa724e2
 			return true;
 		}
 
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 32; j++) {
-			if (((a.data[i] >> (32 - j - 1))) > ((b.data[i] >> (32 - j - 1)))) {
+			if (((a.data[i] >> (32 - j - 1))) >((b.data[i] >> (32 - j - 1)))) {
 				return true;
 			}
 			else
@@ -303,7 +466,7 @@ void DichTrai(QInt &a) {
 	}
 	//cout << endl;
 	/*for (int i = 0; i < 128; i++) {
-		cout << temp[i];
+	cout << temp[i];
 	}*/
 	//cout << endl;
 	int r = 0;
@@ -361,7 +524,7 @@ void ror(QInt &a) {
 	a.data[0] = a.data[0] | (luu << (32 - 1));
 };// xoay trai
 
-// Lay dang string cua QInt he 2
+  // Lay dang string cua QInt he 2
 string TraVeStringHe2(QInt &a) {
 	string s;
 	for (int j = 0; j < 4; j++) {
